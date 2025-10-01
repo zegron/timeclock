@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="54f1d512-e899-4168-866b-13664e81a7ad" name="Changes" comment="Update: View Hours, remove Undo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/time_clock/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/time_clock/Analysis-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/time_clock/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/time_clock/EXE-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/time_clock/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/time_clock/PKG-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/time_clock/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/time_clock/base_library.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/time_clock/time_clock.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/time_clock/time_clock.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/time_clock.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/time_clock.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/time_log.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dist/time_log.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/time_log.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +87,7 @@
       <updated>1758572203471</updated>
       <workItem from="1758572204718" duration="9801000" />
       <workItem from="1759331614533" duration="132000" />
-      <workItem from="1759331926437" duration="198000" />
+      <workItem from="1759331926437" duration="846000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -121,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759237542471</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update: View Hours, remove Undo">
+      <option name="closed" value="true" />
+      <created>1759332194712</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759332194712</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
