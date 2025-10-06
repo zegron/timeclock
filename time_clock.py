@@ -2,9 +2,11 @@ import tkinter as tk
 from tkinter import messagebox, Menu
 import csv
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
-APP_VERSION = "1.1.2"
+# --- App Metadata ---
+APP_VERSION = "1.1.5"  # Change this line only to update version everywhere
+APP_NAME = f"Quick Time Clock v{APP_VERSION}"
 AUTHOR = "zegron"
 EMAIL = "matt@onetakemedia.net"
 LICENSE_SNIPPET = "MIT License © 2025 zegron"
@@ -14,8 +16,35 @@ FILENAME = "time_log.csv"
 
 # --- Core Functions ---
 
+def get_last_action():
+    """Read the last logged action from the CSV file, if any."""
+    if not os.path.exists(FILENAME):
+        return None
+    try:
+        with open(FILENAME, "r") as f:
+            lines = f.readlines()
+            if not lines:
+                return None
+            last_line = lines[-1].strip().split(",")
+            if len(last_line) >= 2:
+                return last_line[1].strip()
+    except Exception:
+        return None
+    return None
+
+
 def log_action(action):
-    """Log Punch In/Out actions to the CSV file."""
+    """Log Punch In/Out actions to the CSV file, preventing invalid sequences."""
+    last_action = get_last_action()
+
+    # Detect invalid sequence
+    if action == "Punch In" and last_action == "Punch In":
+        messagebox.showwarning("Warning", "You must Punch Out before punching in again.")
+        return
+    if action == "Punch Out" and last_action != "Punch In":
+        messagebox.showwarning("Warning", "You must Punch In before punching out.")
+        return
+
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(FILENAME, "a", newline="") as f:
         writer = csv.writer(f)
@@ -38,8 +67,6 @@ def calculate_hours():
     if not os.path.exists(FILENAME):
         messagebox.showwarning("Error", "No log file found.")
         return
-
-    from datetime import timedelta
 
     entries = []
     with open(FILENAME, "r") as f:
@@ -91,7 +118,7 @@ def calculate_hours():
 def show_about():
     """Display app info in a popup window."""
     about_text = (
-        f"Time Clock App v{APP_VERSION}\n"
+        f"{APP_NAME}\n"
         f"Author: {AUTHOR}\n"
         f"Contact: {EMAIL}\n\n"
         f"{LICENSE_SNIPPET}\n\n"
@@ -100,11 +127,24 @@ def show_about():
     messagebox.showinfo("About", about_text)
 
 
+def on_exit():
+    """Warn user if they are still punched in before exiting."""
+    last_action = get_last_action()
+    if last_action == "Punch In":
+        confirm = messagebox.askyesno(
+            "Still Punched In",
+            "You are still punched in.\nAre you sure you want to exit?"
+        )
+        if not confirm:
+            return  # Cancel exit
+    root.destroy()  # Proceed with exit
+
+
 # --- GUI Setup ---
 
 root = tk.Tk()
-root.title(f"Quick Time Clock v{APP_VERSION}")
-root.geometry("340x280")
+root.title(APP_NAME)
+root.geometry("340x300")  # slightly taller for footer label
 
 
 # --- Digital Clock Display ---
@@ -140,7 +180,15 @@ tk.Button(root, text="Punch In", width=15, command=lambda: log_action("Punch In"
 tk.Button(root, text="Punch Out", width=15, command=lambda: log_action("Punch Out")).pack(pady=5)
 tk.Button(root, text="View Hours", width=15, command=calculate_hours).pack(pady=5)
 tk.Button(root, text="View Log", width=15, command=view_log).pack(pady=5)
-tk.Button(root, text="Exit", width=15, command=root.quit).pack(pady=5)
+tk.Button(root, text="Exit", width=15, command=on_exit).pack(pady=5)
+
+# --- Version Label (footer) ---
+version_label = tk.Label(root, text=f"Version {APP_VERSION}", font=("Arial", 9), fg="gray")
+version_label.pack(side="bottom", pady=3)
+
+
+# --- Handle window close (X button) ---
+root.protocol("WM_DELETE_WINDOW", on_exit)
 
 
 # --- Run App ---
