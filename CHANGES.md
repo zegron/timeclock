@@ -1,5 +1,6 @@
 # Changelog
 
+<!-- Sync commit for GitHub display: v1.1.5 -->
 All notable changes to this project will be documented in this file.
 ## [v1.1.5] – 2025-10-06
 ### Added
