@@ -1,4 +1,5 @@
 # Changelog
+<!-- Test commit after switching to Community Edition -->
 
 <!-- Sync commit for GitHub display: v1.1.5 -->
 All notable changes to this project will be documented in this file.
