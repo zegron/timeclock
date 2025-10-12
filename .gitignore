@@ -1,0 +1,44 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+*.env
+
+# ---- Build / Distribution ----
+build/
+dist/
+*.spec
+*.egg-info/
+*.egg
+*.manifest
+*.dll
+*.so
+*.db
+
+# ---- Logs & Temp ----
+*.log
+*.tmp
+*.bak
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- PyCharm ----
+.idea/
+*.iml
+
+# ---- CSV Exports ----
+links.csv
+
+# ---- Misc ----
+# Exclude compiled executables and icons you might test
+*.exe
+*.ico
